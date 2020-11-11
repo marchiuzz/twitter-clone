@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Fortify;
 
@@ -18,9 +19,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function(){
+    return view('home');
+})->middleware('auth');
+
 Fortify::loginView(function () {
     return view('auth.login');
 });
 Fortify::registerView(function () {
     return view('auth.register');
+});
+
+Route::get('/logout', function(){
+    Auth::logout();
+
+    return back();
 });
