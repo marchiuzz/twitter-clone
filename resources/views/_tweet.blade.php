@@ -5,7 +5,7 @@
 
     <div>
         <h5 class="font-bold mb-4">
-            {{$tweet->user->name}}
+            <a href="{{route('profile', $tweet->user)}}">{{$tweet->user->name}}</a>
         </h5>
 
         <p class="text-sm">

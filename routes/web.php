@@ -18,12 +18,17 @@ use Laravel\Fortify\Fortify;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if(Auth::guest()){
+        return view('auth.login');
+    }
+    return redirect('/tweets');
 });
 
 Route::middleware('auth')->group(function(){
     Route::get('/tweets', [TweetController::class, 'index'])->name('home');
     Route::post('/tweets', [TweetController::class, 'store']);
+
+    Route::get('/profiles/{profile}', [\App\Http\Controllers\ProfilesController::class, 'show'])->name('profile');
 });
 
 

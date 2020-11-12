@@ -8,9 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class TweetController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        return view('home', ['tweets' => Auth::user()->timeline()]);
+        return view('tweets.index', ['tweets' => Auth::user()->timeline()]);
     }
 
     public function store(Request $request)
