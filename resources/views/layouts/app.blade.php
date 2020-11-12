@@ -13,25 +13,39 @@
 </head>
 <body class="antialiased">
 
+<div id="app">
+    <div class="flex">
+        <div class="justify-center items-center content-center">
+            @auth
+                <a href="/logout">Logout</a>
+                <a href="/home">Dashboard</a>
+            @else
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            @endauth
 
-    <div id="app">
-
-        <section class="px-8 py-4">
-            <header class="container mx-auto">
-                <h1><img src="https://seeklogo.com/images/T/twitter-bird-icon-logo-B5634C6F6A-seeklogo.com.png" style="width: 100px"></h1>
-            </header>
-        </section>
-
-
-        <section class="px-8">
-            <main class="container mx-auto">
-                @yield('body')
-            </main>
-        </section>
-
-
+        </div>
     </div>
 
+
+    <section class="px-8 py-4">
+        <header class="container mx-auto">
+            <h1><img src="https://seeklogo.com/images/T/twitter-bird-icon-logo-B5634C6F6A-seeklogo.com.png"
+                     style="width: 100px"></h1>
+        </header>
+    </section>
+
+
+    <section class="px-8">
+        <main class="container mx-auto">
+
+
+            @yield('body')
+        </main>
+    </section>
+
+
+</div>
 
 
 </body>

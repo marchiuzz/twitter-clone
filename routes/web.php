@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TweetController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Fortify;
@@ -19,9 +21,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function(){
-    return view('home');
-})->middleware('auth');
+Route::get('/home', [HomeController::class, 'index']);
+Route::post('/tweets', [TweetController::class, 'store']);
 
 Fortify::loginView(function () {
     return view('auth.login');
