@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -50,7 +51,12 @@ class User extends Authenticatable
     }
 
     public function timeline() {
-        return Tweet::where('user_id', $this->id)->latest()->get();
+        $ids = $this->follows->pluck('id');
+        $ids->push($this->id);
+
+        $tweets = Tweet::whereIn('user_id',$ids)->latest()->get();
+
+        return $tweets;
     }
 
     public function follow(User $user){

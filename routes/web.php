@@ -21,8 +21,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [HomeController::class, 'index']);
-Route::post('/tweets', [TweetController::class, 'store']);
+Route::middleware('auth')->group(function(){
+    Route::get('/tweets', [TweetController::class, 'index'])->name('home');
+    Route::post('/tweets', [TweetController::class, 'store']);
+});
+
 
 Fortify::loginView(function () {
     return view('auth.login');

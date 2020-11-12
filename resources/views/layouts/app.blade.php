@@ -18,7 +18,7 @@
         <div class="justify-center items-center content-center">
             @auth
                 <a href="/logout">Logout</a>
-                <a href="/home">Dashboard</a>
+                <a href="/tweets">Dashboard</a>
             @else
                 <a href="/login">Login</a>
                 <a href="/register">Register</a>
