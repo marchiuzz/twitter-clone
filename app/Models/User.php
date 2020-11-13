@@ -64,5 +64,5 @@ class User extends Authenticatable
 
         return $tweets;
     }
-
+    
 }

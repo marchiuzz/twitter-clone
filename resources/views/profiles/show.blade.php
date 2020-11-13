@@ -20,11 +20,7 @@
         <div>
             <a href="" class="rounded-lg shadow py-4 px-2 text-black">Edit Profile</a>
 
-            <form method="POST" action="{{route('profile.follow', $profile)}}">
-                @csrf
-                <button type="submit" class="bg-blue-500 rounded-lg shadow py-4 px-2 text-white">Follow Me</button>
-            </form>
-
+            <x-follow-form :profile="$profile"></x-follow-form>
 
         </div>
     </div>
