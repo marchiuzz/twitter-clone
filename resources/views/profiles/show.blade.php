@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('body')
+<x-app>
 
     <div class="flex justify-between relative">
         <header>
@@ -21,11 +19,17 @@
 
         <div>
             <a href="" class="rounded-lg shadow py-4 px-2 text-black">Edit Profile</a>
-            <a href="" class="bg-blue-500 rounded-lg shadow py-4 px-2 text-white">Follow Me</a>
+
+            <form method="POST" action="{{route('profile.follow', $profile)}}">
+                @csrf
+                <button type="submit" class="bg-blue-500 rounded-lg shadow py-4 px-2 text-white">Follow Me</button>
+            </form>
+
+
         </div>
     </div>
 
     @include('_timeline', ['tweets' => $profile->tweets])
 
 
-@endsection
+</x-app>

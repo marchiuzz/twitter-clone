@@ -15,7 +15,9 @@ class TweetController extends Controller
 
     public function index()
     {
-        return view('tweets.index', ['tweets' => Auth::user()->timeline()]);
+        $tweets = Auth::user()->timeline(); //todo: later change
+        $tweets = Tweet::all();
+        return view('tweets.index', ['tweets' => $tweets]);
     }
 
     public function store(Request $request)

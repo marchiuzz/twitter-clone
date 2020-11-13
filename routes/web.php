@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileFollowController;
+use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\TweetController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +30,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/tweets', [TweetController::class, 'index'])->name('home');
     Route::post('/tweets', [TweetController::class, 'store']);
 
-    Route::get('/profiles/{profile}', [\App\Http\Controllers\ProfilesController::class, 'show'])->name('profile');
+    Route::get('/profiles/{profile:name}', [ProfilesController::class, 'show'])->name('profile');
+    Route::post('/profiles/{profile}/follow', [ProfileFollowController::class, 'store'])->name('profile.follow');
 });
 
 
