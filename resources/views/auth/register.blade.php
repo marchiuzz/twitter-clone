@@ -9,6 +9,7 @@
                     <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm center">
                         <form method="POST" action="/register">
                             @csrf
+                            <input type="text" name="username" placeholder="username" value="{{old('username')}}">
                             <input type="text" name="name" placeholder="Name" value="{{old('name')}}">
                             <input type="text" name="email" placeholder="Email" value="{{old('password')}}">
                             <input type="password" name="password">

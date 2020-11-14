@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileFollowController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\TweetController;
+use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Fortify;
@@ -30,8 +31,12 @@ Route::middleware('auth')->group(function(){
     Route::get('/tweets', [TweetController::class, 'index'])->name('home');
     Route::post('/tweets', [TweetController::class, 'store']);
 
-    Route::get('/profiles/{profile:name}', [ProfilesController::class, 'show'])->name('profile');
+    Route::get('/profiles/{profile:username}', [ProfilesController::class, 'show'])->name('profile');
     Route::post('/profiles/{profile}/follow', [ProfileFollowController::class, 'store'])->name('profile.follow');
+
+
+    Route::get('/profiles/{profile:username}/edit', [ProfilesController::class, 'edit'])->name('profile.edit')->middleware('can:edit,profile');
+    Route::patch('/profiles/{profile:username}', [ProfilesController::class, 'update'])->name('profile.update')->middleware('can:update,profile');
 });
 
 

@@ -18,7 +18,10 @@
         </div>
 
         <div>
-            <a href="" class="rounded-lg shadow py-4 px-2 text-black">Edit Profile</a>
+
+            @can('update', $profile)
+            <a href="{{ $profile->path('edit') }}" class="rounded-lg shadow py-4 px-2 text-black">Edit Profile</a>
+            @endcan
 
             <x-follow-form :profile="$profile"></x-follow-form>
 

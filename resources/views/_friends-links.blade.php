@@ -2,7 +2,7 @@
 
 <ul>
 
-   @foreach(auth()->user()->follows as $user)
+   @forelse(current_user()->follows as $user)
 
     <li class="mb-4">
         <div class="flex items-center text-sm">
@@ -14,6 +14,9 @@
             </a>
         </div>
     </li>
-    @endforeach
+    @empty
+       <p>Nieko nera</p>
+
+    @endforelse
 
 </ul>

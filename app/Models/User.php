@@ -18,9 +18,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'username',
         'name',
         'email',
         'password',
+        'avatar',
     ];
 
     /**
@@ -42,9 +44,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getAvatarAttribute()
+    public function getAvatarAttribute($value)
     {
-        return "https://i.pravatar.cc/50?u=" . $this->email;
+        return asset($value);
     }
 
     public function tweets()
@@ -64,5 +66,11 @@ class User extends Authenticatable
 
         return $tweets;
     }
-    
+
+    public function path($append = ''){
+        $path = route('profile', $this);
+
+        return $append ? "{$path}/{$append}" : $path;
+    }
+
 }
