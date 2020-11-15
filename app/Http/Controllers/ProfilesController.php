@@ -6,6 +6,7 @@ use App\Actions\Fortify\PasswordValidationRules;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -26,6 +27,7 @@ class ProfilesController extends Controller
         $validation = $request->validated();
 
         $validation['avatar'] = request('avatar')->store('avatars');
+        $validation['password'] = Hash::make(\request('password'));
 
         $profile->update($validation);
 

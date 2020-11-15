@@ -11,6 +11,11 @@
 
     <link href="{{asset('css/main.css')}}" rel="stylesheet">
 </head>
+<style>
+    .avatar {
+        max-width: 50px;
+    }
+</style>
 <body class="antialiased">
 
 <div id="app">

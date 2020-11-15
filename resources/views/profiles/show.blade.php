@@ -5,7 +5,7 @@
             <img class="rounded-2xl mb-6" src="https://i.ytimg.com/vi/h8NrKjJPAuw/maxresdefault.jpg">
         </header>
 
-        <img src="{{$profile->avatar}}" class="rounded-full mr-2 absolute"
+        <img src="{{$profile->avatar}}" class="avatar rounded-full mr-2 absolute"
              style="width: 90px;left: calc(50% - 56px);top: 76%;">
     </div>
 

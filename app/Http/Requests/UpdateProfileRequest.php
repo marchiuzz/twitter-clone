@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class UpdateProfileRequest extends FormRequest
@@ -19,7 +20,7 @@ class UpdateProfileRequest extends FormRequest
     public function rules()
     {
 
-        return [
+        $validation = [
             'username' => ['required', 'string', Rule::unique('users')->ignore($this->profile), 'without_spaces'],
             'name' => ['required', 'string', 'max:255'],
             'avatar' => ['required', 'file'],
@@ -32,5 +33,8 @@ class UpdateProfileRequest extends FormRequest
             ],
             'password' => $this->passwordRules(),
         ];
+
+
+        return $validation;
     }
 }
