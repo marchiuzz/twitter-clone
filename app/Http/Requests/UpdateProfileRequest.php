@@ -23,7 +23,7 @@ class UpdateProfileRequest extends FormRequest
         $validation = [
             'username' => ['required', 'string', Rule::unique('users')->ignore($this->profile), 'without_spaces'],
             'name' => ['required', 'string', 'max:255'],
-            'avatar' => ['required', 'file'],
+            'avatar' => ['file'],
             'email' => [
                 'required',
                 'string',

@@ -4,4 +4,6 @@
     @empty
         <p>Nieko nera</p>
     @endforelse
+
+        {{ $tweets->links() }}
 </div>

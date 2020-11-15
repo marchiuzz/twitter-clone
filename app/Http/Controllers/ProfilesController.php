@@ -26,8 +26,9 @@ class ProfilesController extends Controller
     public function update(User $profile, UpdateProfileRequest $request){
         $validation = $request->validated();
 
-        $validation['avatar'] = request('avatar')->store('avatars');
-        $validation['password'] = Hash::make(\request('password'));
+        if($request->avatar){
+            $validation['avatar'] = $request->avatar->store('avatars');
+        }
 
         $profile->update($validation);
 

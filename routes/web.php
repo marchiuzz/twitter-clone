@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileFollowController;
 use App\Http\Controllers\ProfilesController;
@@ -37,6 +38,8 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/profiles/{profile:username}/edit', [ProfilesController::class, 'edit'])->name('profile.edit')->middleware('can:edit,profile');
     Route::patch('/profiles/{profile:username}', [ProfilesController::class, 'update'])->name('profile.update')->middleware('can:update,profile');
+
+    Route::get('/explore', [ExploreController::class, 'index']);
 });
 
 
