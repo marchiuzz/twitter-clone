@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\ExploreController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LikesController;
 use App\Http\Controllers\ProfileFollowController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\TweetController;
-use Illuminate\Contracts\Auth\Access\Gate;
+use App\Models\Tweet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Fortify;
@@ -21,11 +21,20 @@ use Laravel\Fortify\Fortify;
 |
 */
 
+//dd(Tweet::withCount(['likes', 'dislikes'])->get('attributes'));
+
 Route::get('/', function () {
     if(Auth::guest()){
         return view('auth.login');
     }
     return redirect('/tweets');
+});
+
+Fortify::loginView(function () {
+    return view('auth.login');
+});
+Fortify::registerView(function () {
+    return view('auth.register');
 });
 
 Route::middleware('auth')->group(function(){
@@ -40,15 +49,12 @@ Route::middleware('auth')->group(function(){
     Route::patch('/profiles/{profile:username}', [ProfilesController::class, 'update'])->name('profile.update')->middleware('can:update,profile');
 
     Route::get('/explore', [ExploreController::class, 'index']);
+
+    Route::post('/tweets/{tweet}/like', [LikesController::class, 'store']);
 });
 
 
-Fortify::loginView(function () {
-    return view('auth.login');
-});
-Fortify::registerView(function () {
-    return view('auth.register');
-});
+
 
 Route::get('/logout', function(){
     Auth::logout();

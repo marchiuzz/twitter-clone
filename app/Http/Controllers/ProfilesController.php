@@ -16,7 +16,9 @@ class ProfilesController extends Controller
 
     public function show(User $profile){
 
-        return view('profiles.show', compact('profile'));
+        $tweets = $profile->timeline();
+
+        return view('profiles.show', ['tweets' => $tweets, 'profile' => $profile]);
     }
 
     public function edit(User $profile){

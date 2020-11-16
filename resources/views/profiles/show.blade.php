@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    @include('_timeline', ['tweets' => $profile->tweets])
+    @include('_timeline', ['tweets' => $profile->timeline()])
 
 
 </x-app>
